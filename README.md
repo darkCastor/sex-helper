@@ -20,3 +20,5 @@ features :
  - location on our team
  - contact form
  - web first, mobile second
+ - add snapchat link
+ - snapchat account
