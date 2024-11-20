@@ -2,9 +2,13 @@ goals :
  - tackle increasing loneliness
  - reconnect people
  - make people discover and enjoy their sexuality
+ - casual sex : no need to manage the problems of couple life
+ - make people realize their fantasms (if posssible)
+ - determining their sexuality
+ - massage for prepaaring the meat
 
 stack :
- - astrojs 5
+ - astrojs
  - svelte 5
  - tailwindcss
  - surrealistdb
