@@ -17,18 +17,22 @@ const { title } = Astro.props as Props;
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
         <meta name="theme-color" content="#13151a" />
-        <link rel="manifest" href="/manifest.webmanifest" />
+        {/* Only include manifest in production */}
+        {!import.meta.env.DEV && <link rel="manifest" href="/manifest.webmanifest" />}
         <title>{title}</title>
     </head>
     <body>
         <slot />
-        <div id="pwa-toast" role="alert" aria-labelledby="toast-message">
-            <div class="message">
-                <span id="toast-message">New content available</span>
+        <!-- Only show toast in production -->
+        {!import.meta.env.DEV && (
+            <div id="pwa-toast" role="alert" aria-labelledby="toast-message">
+                <div class="message">
+                    <span id="toast-message">New content available</span>
+                </div>
+                <button id="pwa-refresh">Reload</button>
+                <button id="pwa-close">Close</button>
             </div>
-            <button id="pwa-refresh">Reload</button>
-            <button id="pwa-close">Close</button>
-        </div>
+        )}
     </body>
 </html>
 
