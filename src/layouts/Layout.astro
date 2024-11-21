@@ -36,32 +36,35 @@ const { title } = Astro.props as Props;
 // @ts-ignore
 import { registerSW } from 'virtual:pwa-register';
 
-const updateSW = registerSW({
-  onNeedRefresh() {
-    const toast = document.getElementById('pwa-toast');
-    const refreshButton = document.getElementById('pwa-refresh');
-    const closeButton = document.getElementById('pwa-close');
+// Only register service worker in production
+if (!import.meta.env.DEV) {
+  const updateSW = registerSW({
+    onNeedRefresh() {
+      const toast = document.getElementById('pwa-toast');
+      const refreshButton = document.getElementById('pwa-refresh');
+      const closeButton = document.getElementById('pwa-close');
 
-    if (!toast || !refreshButton || !closeButton) {
-      console.error('PWA toast elements not found');
-      return;
-    }
+      if (!toast || !refreshButton || !closeButton) {
+        console.error('PWA toast elements not found');
+        return;
+      }
 
-    toast.classList.add('show');
+      toast.classList.add('show');
 
-    refreshButton.addEventListener('click', () => {
-      updateSW(true);
-      toast.classList.remove('show');
-    });
+      refreshButton.addEventListener('click', () => {
+        updateSW(true);
+        toast.classList.remove('show');
+      });
 
-    closeButton.addEventListener('click', () => {
-      toast.classList.remove('show');
-    });
-  },
-  onOfflineReady() {
-    console.log('App ready to work offline');
-  },
-});
+      closeButton.addEventListener('click', () => {
+        toast.classList.remove('show');
+      });
+    },
+    onOfflineReady() {
+      console.log('App ready to work offline');
+    },
+  });
+}
 </script>
 
 <style is:global>
