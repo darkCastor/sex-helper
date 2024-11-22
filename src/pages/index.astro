@@ -10,121 +10,120 @@ const t = getTranslations(lang);
 const marketingArgs = [
   {
     emoji: "🔍",
-    title: "Explore Your Sexuality",
-    description: "Safe space for personal discovery and exploration",
-    buttonText: "Learn More"
+    title: t.marketing.explore.title,
+    description: t.marketing.explore.description,
+    buttonText: t.marketing.explore.button
   },
   {
     emoji: "✨",
-    title: "Fulfill Your Desires",
-    description: "Experience your dreams in a controlled environment",
-    buttonText: "Discover"
+    title: t.marketing.desires.title,
+    description: t.marketing.desires.description,
+    buttonText: t.marketing.desires.button
   },
   {
     emoji: "🎯",
-    title: "Practice Makes Perfect",
-    description: "Gain confidence and experience",
-    buttonText: "Start Now"
+    title: t.marketing.practice.title,
+    description: t.marketing.practice.description,
+    buttonText: t.marketing.practice.button
   },
   {
     emoji: "🔒",
-    title: "100% Private",
-    description: "Your privacy is our absolute priority",
-    buttonText: "Privacy Info"
+    title: t.marketing.privacy.title,
+    description: t.marketing.privacy.description,
+    buttonText: t.marketing.privacy.button
   },
   {
     emoji: "💝",
-    title: "Your Wellbeing First",
-    description: "Professional team dedicated to your comfort",
-    buttonText: "Meet Team"
+    title: t.marketing.wellbeing.title,
+    description: t.marketing.wellbeing.description,
+    buttonText: t.marketing.wellbeing.button
   },
   {
     emoji: "🌟",
-    title: "Discover Joy",
-    description: "Experience new heights of pleasure",
-    buttonText: "Begin Journey"
+    title: t.marketing.joy.title,
+    description: t.marketing.joy.description,
+    buttonText: t.marketing.joy.button
   }
 ];
 ---
 
 <Layout title="ConnectMe">
   <nav>
-    <LanguageSelector currentLang={lang}} client:load />
     <div class="container mx-auto px-4">
       <div class="flex justify-between items-center">
-        <div class="logo">ConnectMe</div>
+        <div class="logo">{t.nav.logo}</div>
         <div class="flex items-center gap-4">
+          <LanguageSelector currentLang={lang} client:load />
           <button class="nav-cta">{t.nav.join}</button>
         </div>
       </div>
     </div>
   </nav>
-  <!-- Hero Section -->
+
   <section class="container mx-auto px-4 pt-12 pb-8 md:pt-20 md:pb-16">
     <div class="text-center max-w-3xl mx-auto mb-12 md:mb-20">
-      <h1 class="text-3xl md:text-5xl font-semibold text-white mb-6"> <!-- Increased font weight -->
-        Your Journey to Self-Discovery
+      <h1 class="text-3xl md:text-5xl font-semibold text-white mb-6">
+        {t.hero.title}
       </h1>
-      <p class="text-lg md:text-xl text-white leading-relaxed"> <!-- Removed opacity -->
-        Experience genuine connections in a safe, welcoming space designed for you
+      <p class="text-lg md:text-xl text-white leading-relaxed">
+        {t.hero.subtitle}
       </p>
     </div>
 
-      <!-- Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-        {marketingArgs.map((arg) => (
-          <div class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-            <ArgumentCard
-              client:load
-              {...arg}
-            />
-          </div>
-        ))}
-      </div>
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+      {marketingArgs.map((arg) => (
+        <div class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+          <ArgumentCard
+            client:load
+            {...arg}
+          />
+        </div>
+      ))}
+    </div>
 
-      <!-- CTA Section -->
-      <div class="mt-16 md:mt-24 text-center">
-        <button class="main-cta">
-          Start Your Journey
-        </button>
-        <p class="mt-4 text-white/80 text-sm">No commitment • 100% Private • Instant Access</p>
-      </div>
-    </section>
+    <!-- CTA Section -->
+    <div class="mt-16 md:mt-24 text-center">
+      <button class="main-cta">
+        {t.cta.main}
+      </button>
+      <p class="mt-4 text-white/80 text-sm">{t.cta.subtitle}</p>
+    </div>
+  </section>
 
-    <!-- Trust Indicators -->
-    <section class="bg-white/5 backdrop-blur-md border-t border-white/10 py-12 mt-20">
-      <div class="container mx-auto px-4">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
-          <div class="flex flex-col items-center">
-            <span class="text-2xl md:text-3xl font-light text-white mb-2">10k+</span>
-            <span class="text-white/70 text-sm">Active Members</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <span class="text-2xl md:text-3xl font-light text-white mb-2">98%</span>
-            <span class="text-white/70 text-sm">Satisfaction</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <span class="text-2xl md:text-3xl font-light text-white mb-2">24/7</span>
-            <span class="text-white/70 text-sm">Support</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <span class="text-2xl md:text-3xl font-light text-white mb-2">100%</span>
-            <span class="text-white/70 text-sm">Private</span>
-          </div>
+  <!-- Trust Indicators -->
+  <section class="bg-white/5 backdrop-blur-md border-t border-white/10 py-12 mt-20">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
+        <div class="flex flex-col items-center">
+          <span class="text-2xl md:text-3xl font-light text-white mb-2">{t.stats.members.value}</span>
+          <span class="text-white/70 text-sm">{t.stats.members.label}</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="text-2xl md:text-3xl font-light text-white mb-2">{t.stats.satisfaction.value}</span>
+          <span class="text-white/70 text-sm">{t.stats.satisfaction.label}</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="text-2xl md:text-3xl font-light text-white mb-2">{t.stats.support.value}</span>
+          <span class="text-white/70 text-sm">{t.stats.support.label}</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="text-2xl md:text-3xl font-light text-white mb-2">{t.stats.privacy.value}</span>
+          <span class="text-white/70 text-sm">{t.stats.privacy.label}</span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/10 py-8 mt-auto">
-      <div class="container mx-auto px-4">
-        <div class="text-center text-white/60">
-          <p class="text-sm mb-2">18+ Only • Terms Apply • Privacy Protected</p>
-          <p class="text-xs">&copy; {new Date().getFullYear()} ConnectMe. All rights reserved.</p>
-        </div>
+  <!-- Footer -->
+  <footer class="border-t border-white/10 py-8 mt-auto">
+    <div class="container mx-auto px-4">
+      <div class="text-center text-white/60">
+        <p class="text-sm mb-2">{t.footer.legal}</p>
+        <p class="text-xs">&copy; {new Date().getFullYear()} ConnectMe. {t.footer.copyright}</p>
       </div>
-    </footer>
-  </main>
+    </div>
+  </footer>
 </Layout>
 
 <style>
