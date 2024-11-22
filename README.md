@@ -22,3 +22,11 @@ features :
  - web first, mobile second
  - add snapchat link
  - snapchat account
+
+ "marketing arguments" :
+ - explore your sexuality
+ - satisfy your fantasms
+ - practice for you boyfriend
+ - privacy is absolute
+ - your wellbeing is our priority
+ - discover the pleasure and joy

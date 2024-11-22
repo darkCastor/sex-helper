@@ -8,6 +8,7 @@ export default defineConfig({
   integrations: [
     AstroPWA({
       registerType: "autoUpdate",
+      disable: process.env.NODE_ENV === "development",
       manifest: {
         name: "Your App Name",
         short_name: "App",
