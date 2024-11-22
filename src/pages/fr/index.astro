@@ -1,8 +1,8 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ArgumentCard from '../components/ArgumentCard.svelte';
-import LanguageSelector from '../components/LanguageSelector.svelte';
-import { getLangFromUrl, getTranslations } from '../i18n/utils';
+import Layout from '../../layouts/Layout.astro';
+import ArgumentCard from '../../components/ArgumentCard.svelte';
+import LanguageSelector from '../../components/LanguageSelector.svelte';
+import { getLangFromUrl, getTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = getTranslations(lang);

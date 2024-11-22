@@ -6,10 +6,11 @@ interface Props {
 
 // Extract title from props using Astro.props
 const { title } = Astro.props as Props;
+const currentLang = Astro.url.pathname.split('/')[1] || 'en';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={currentLang}>
     <head>
         <meta charset="UTF-8" />
         <meta name="description" content="Astro description" />
