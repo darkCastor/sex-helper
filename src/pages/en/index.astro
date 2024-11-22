@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import ArgumentCard from '../../components/ArgumentCard.svelte';
 import LanguageSelector from '../../components/LanguageSelector.svelte';
+import SocialIcons from '../../components/SocialIcons.svelte';
 import { getLangFromUrl, getTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -48,17 +49,18 @@ const marketingArgs = [
 ---
 
 <Layout title="ConnectMe">
-  <nav>
-    <div class="container mx-auto px-4">
-      <div class="flex justify-between items-center">
-        <div class="logo">{t.nav.logo}</div>
-        <div class="flex items-center gap-4">
-          <LanguageSelector currentLang={lang} client:load />
-          <button class="nav-cta">{t.nav.join}</button>
-        </div>
+<nav>
+  <div class="container mx-auto px-4">
+    <div class="flex justify-between items-center">
+      <div class="logo">{t.nav.logo}</div>
+      <div class="flex items-center gap-4">
+        <SocialIcons snapchatUsername="your_snapchat" client:load />
+        <LanguageSelector currentLang={lang} client:load />
+        <button class="nav-cta">{t.nav.join}</button>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
 
   <section class="container mx-auto px-4 pt-12 pb-8 md:pt-20 md:pb-16">
     <div class="text-center max-w-3xl mx-auto mb-12 md:mb-20">
