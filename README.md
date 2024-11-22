@@ -9,7 +9,7 @@ goals :
 
 stack :
  - astrojs
- - svelte 5
+ - svelte
  - tailwindcss
  - surrealistdb
  - pnpm
