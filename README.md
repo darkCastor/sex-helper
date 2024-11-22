@@ -30,3 +30,4 @@ features :
  - privacy is absolute
  - your wellbeing is our priority
  - discover the pleasure and joy
+ - gain confidence
