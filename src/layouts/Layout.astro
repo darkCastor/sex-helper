@@ -18,22 +18,22 @@ const currentLang = Astro.url.pathname.split('/')[1] || 'en';
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
-        <meta name="theme-color" content="#13151a" />
+        <meta name="theme-color" content="#1a0f1d" />
         {/* Only include manifest in production */}
         {!import.meta.env.DEV && <link rel="manifest" href="/manifest.webmanifest" />}
         <title>{title}</title>
     </head>
     <body>
-        <!-- Top bar with just language selector -->
-        <header class="fixed top-0 left-0 right-0 bg-black/90 backdrop-blur-lg z-50 border-b border-white/10">
+        <!-- Top bar with language selector -->
+        <header class="fixed top-0 left-0 right-0 bg-pink-950/90 backdrop-blur-lg z-50 border-b border-pink-200/10">
             <div class="container mx-auto px-4 h-14 flex justify-between items-center">
-                <div class="text-white/90">{title}</div>
+                <div class="text-pink-100/90 font-light tracking-wide">{title}</div>
                 <LanguageSelector currentLang={currentLang} client:load />
             </div>
         </header>
 
         <!-- Main content -->
-        <main class="pt-14 pb-16"> <!-- Add padding for top header and bottom nav -->
+        <main class="pt-14 pb-16 min-h-screen bg-gradient-to-b from-[#1a0f1d] to-[#2d1b2e]">
             <slot />
         </main>
 
@@ -52,9 +52,9 @@ const currentLang = Astro.url.pathname.split('/')[1] || 'en';
 
 <style is:global>
     :root {
-        --accent: 136, 58, 234;
-        --accent-light: 224, 204, 250;
-        --accent-dark: 49, 10, 101;
+        --accent: 219, 39, 119; /* Pink-600 */
+        --accent-light: 249, 168, 212; /* Pink-300 */
+        --accent-dark: 131, 24, 67; /* Pink-800 */
         --accent-gradient: linear-gradient(
             45deg,
             rgb(var(--accent)),
@@ -64,7 +64,8 @@ const currentLang = Astro.url.pathname.split('/')[1] || 'en';
     }
     html {
         font-family: system-ui, sans-serif;
-        background: #13151a;
+        background: #1a0f1d;
+        color-scheme: dark;
     }
     code {
         font-family:
@@ -82,15 +83,16 @@ const currentLang = Astro.url.pathname.split('/')[1] || 'en';
     #pwa-toast {
         position: fixed;
         right: 0;
-        bottom: 80px; /* Adjusted to be above bottom nav */
+        bottom: 80px;
         margin: 16px;
         padding: 12px;
-        border: 1px solid #8885;
+        border: 1px solid rgba(249, 168, 212, 0.2);
         border-radius: 4px;
         z-index: 1;
         text-align: left;
-        box-shadow: 3px 4px 5px 0 #8885;
-        background-color: white;
+        box-shadow: 3px 4px 5px 0 rgba(249, 168, 212, 0.1);
+        background-color: #2d1b2e;
+        color: #fdf2f8;
         display: none;
     }
     #pwa-toast.show {
@@ -102,10 +104,18 @@ const currentLang = Astro.url.pathname.split('/')[1] || 'en';
         margin-bottom: 8px;
     }
     #pwa-toast button {
-        border: 1px solid #8885;
+        border: 1px solid rgba(249, 168, 212, 0.2);
         outline: none;
         margin-right: 5px;
         border-radius: 2px;
         padding: 3px 10px;
+        background: rgba(249, 168, 212, 0.1);
+        color: #fdf2f8;
+        font-size: 0.9em;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    #pwa-toast button:hover {
+        background: rgba(249, 168, 212, 0.2);
     }
 </style>

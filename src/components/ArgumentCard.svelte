@@ -16,15 +16,28 @@
 </div>
 
 <style lang="postcss">
-  .card {
-    @apply bg-white/10 backdrop-blur-md;
-    @apply rounded-2xl;
-    @apply flex flex-col items-center justify-between;
-    @apply p-6 md:p-8;
-    @apply h-full;
-    @apply border border-white/20;
-    @apply transition-all duration-300;
-  }
+    .card {
+      @apply bg-pink-900/10 backdrop-blur-md;
+      @apply rounded-2xl;
+      @apply flex flex-col items-center justify-between;
+      @apply p-6 md:p-8;
+      @apply h-full;
+      @apply border border-pink-200/20;
+      @apply transition-all duration-300;
+      @apply hover:bg-pink-900/20;
+    }
+
+    .action-button {
+      @apply bg-pink-500/20 text-pink-100;
+      @apply px-6 py-2;
+      @apply rounded-full;
+      @apply text-sm font-light;
+      @apply border border-pink-300/20;
+      @apply transition-all duration-300;
+      @apply hover:bg-pink-500/30 hover:border-pink-300/30;
+      @apply active:scale-95;
+      @apply w-full md:w-auto;
+    }
 
   .emoji {
     @apply text-4xl md:text-5xl;
@@ -48,17 +61,5 @@
     @apply text-center;
     @apply leading-relaxed;
     @apply flex-grow;
-  }
-
-  .action-button {
-    @apply bg-white/10 text-white;
-    @apply px-6 py-2;
-    @apply rounded-full;
-    @apply text-sm font-light;
-    @apply border border-white/20;
-    @apply transition-all duration-300;
-    @apply hover:bg-white/20 hover:border-white/30;
-    @apply active:scale-95; /* Valid Tailwind class */
-    @apply w-full md:w-auto;
   }
 </style>
