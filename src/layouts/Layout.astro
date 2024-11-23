@@ -4,6 +4,7 @@ interface Props {
     title: string;
 }
 import LanguageSelector from '../components/LanguageSelector.svelte';
+import SnapchatFAB from '../components/SnapchatFAB.svelte';
 
 // Extract title from props using Astro.props
 const { title } = Astro.props as Props;
@@ -25,11 +26,21 @@ const currentLang = Astro.url.pathname.split('/')[1] || 'en';
     </head>
     <body>
         <!-- Top bar with language selector -->
-        <header class="fixed top-0 left-0 right-0 bg-pink-950/90 backdrop-blur-lg z-50 border-b border-pink-200/10">
-            <div class="container mx-auto px-4 h-14 flex justify-between items-center">
-                <div class="text-pink-100/90 font-light tracking-wide">{title}</div>
+        <header class="fixed top-0 left-0 right-0 bg-black/50 backdrop-blur-md z-50 border-b border-white/10">
+          <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-14">
+              <!-- Logo/Brand -->
+              <div class="text-pink-100/90 font-light tracking-wide">
+                {title}
+              </div>
+
+              <!-- Right section with Snapchat and Language -->
+              <div class="flex items-center gap-4">
+                <SnapchatFAB username="your_snapchat" client:load />
                 <LanguageSelector currentLang={currentLang} client:load />
+              </div>
             </div>
+          </div>
         </header>
 
         <!-- Main content -->
