@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import ArgumentCard from '../../components/ArgumentCard.svelte';
 import LanguageSelector from '../../components/LanguageSelector.svelte';
+import SocialIcons from '../../components/SocialIcons.svelte';
 import { getLangFromUrl, getTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -47,30 +48,38 @@ const marketingArgs = [
 ];
 ---
 
-<Layout title="ConnectMe">
-  <nav>
-    <div class="container mx-auto px-4">
-      <div class="flex justify-between items-center">
-        <div class="logo">{t.nav.logo}</div>
-        <div class="flex items-center gap-4">
-          <LanguageSelector currentLang={lang} client:load />
-          <button class="nav-cta">{t.nav.join}</button>
-        </div>
-      </div>
+<Layout title={t.nav.logo}>
+  <!-- Full-height hero section -->
+  <section class="min-h-screen flex flex-col items-center justify-center relative px-4 py-20">
+    <div class="absolute top-4 right-4 z-50">
+      <LanguageSelector currentLang={lang} client:load />
     </div>
-  </nav>
 
-  <section class="container mx-auto px-4 pt-12 pb-8 md:pt-20 md:pb-16">
-    <div class="text-center max-w-3xl mx-auto mb-12 md:mb-20">
-      <h1 class="text-3xl md:text-5xl font-semibold text-white mb-6">
+    <div class="text-center max-w-3xl mx-auto">
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 animate-fade-in">
         {t.hero.title}
       </h1>
-      <p class="text-lg md:text-xl text-white leading-relaxed">
+      <p class="text-xl md:text-2xl text-white/90 leading-relaxed mb-8 animate-fade-in-delay">
         {t.hero.subtitle}
       </p>
+      <button class="main-cta animate-fade-in-delay-2">
+        {t.cta.main}
+      </button>
     </div>
 
-    <!-- Cards Grid -->
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 animate-bounce">
+      <div class="flex flex-col items-center text-white/60">
+        <span class="text-sm mb-2">Scroll to explore</span>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marketing Arguments Section -->
+  <section class="bg-black/30 backdrop-blur-md py-20 px-4">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
       {marketingArgs.map((arg) => (
         <div class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
@@ -81,42 +90,28 @@ const marketingArgs = [
         </div>
       ))}
     </div>
+  </section>
 
-    <!-- CTA Section -->
-    <div class="mt-16 md:mt-24 text-center">
-      <button class="main-cta">
-        {t.cta.main}
-      </button>
-      <p class="mt-4 text-white/80 text-sm">{t.cta.subtitle}</p>
+  <!-- Social Connection Section -->
+  <section class="bg-purple-900/20 backdrop-blur-md py-20 px-4 text-center">
+    <h2 class="text-3xl md:text-4xl font-light text-white mb-8">Connect With Us</h2>
+    <div class="flex justify-center gap-6">
+      <SocialIcons snapchatUsername="your_snapchat" client:load />
+      <!-- Add other social icons as needed -->
     </div>
   </section>
 
-  <!-- Trust Indicators -->
-  <section class="bg-white/5 backdrop-blur-md border-t border-white/10 py-12 mt-20">
-    <div class="container mx-auto px-4">
+  <!-- Stats Section -->
+  <section class="bg-white/5 backdrop-blur-md py-20 px-4">
+    <div class="container mx-auto">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
-        <div class="flex flex-col items-center">
-          <span class="text-2xl md:text-3xl font-light text-white mb-2">{t.stats.members.value}</span>
-          <span class="text-white/70 text-sm">{t.stats.members.label}</span>
-        </div>
-        <div class="flex flex-col items-center">
-          <span class="text-2xl md:text-3xl font-light text-white mb-2">{t.stats.satisfaction.value}</span>
-          <span class="text-white/70 text-sm">{t.stats.satisfaction.label}</span>
-        </div>
-        <div class="flex flex-col items-center">
-          <span class="text-2xl md:text-3xl font-light text-white mb-2">{t.stats.support.value}</span>
-          <span class="text-white/70 text-sm">{t.stats.support.label}</span>
-        </div>
-        <div class="flex flex-col items-center">
-          <span class="text-2xl md:text-3xl font-light text-white mb-2">{t.stats.privacy.value}</span>
-          <span class="text-white/70 text-sm">{t.stats.privacy.label}</span>
-        </div>
+        {/* Your existing stats */}
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-white/10 py-8 mt-auto">
+  <footer class="border-t border-white/10 py-8">
     <div class="container mx-auto px-4">
       <div class="text-center text-white/60">
         <p class="text-sm mb-2">{t.footer.legal}</p>
@@ -127,50 +122,56 @@ const marketingArgs = [
 </Layout>
 
 <style>
-  /* Base Styles */
-  :global(body) {
-    @apply m-0 p-0 min-h-screen overflow-x-hidden;
-    font-family: 'Inter', system-ui, sans-serif;
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
   }
 
-  /* Navigation Button */
-  .nav-cta {
-    @apply bg-white text-purple-700; /* Darker text on white background */
-    @apply px-5 py-2;
-    @apply rounded-full;
-    @apply text-sm font-medium; /* Increased font weight */
-    @apply transition-all duration-300;
-    @apply hover:bg-purple-100;
-    @apply active:scale-95;
+  .animate-fade-in-delay {
+    animation: fadeIn 1s ease-out 0.3s forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in-delay-2 {
+    animation: fadeIn 1s ease-out 0.6s forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .main-cta {
-    @apply bg-white text-purple-700; /* Darker text color */
+    @apply bg-white text-purple-700;
     @apply px-10 py-4;
     @apply rounded-full;
-    @apply text-lg font-semibold; /* Increased font weight */
+    @apply text-lg font-semibold;
     @apply shadow-lg;
     @apply transform transition-all duration-300;
     @apply hover:shadow-xl hover:-translate-y-1;
     @apply active:scale-95;
   }
 
-  /* Container */
-  .container {
-    @apply max-w-7xl mx-auto;
+  /* Smooth scrolling for the whole page */
+  :global(html) {
+    scroll-behavior: smooth;
   }
 
-  /* Animations */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  /* Create a snap-scrolling effect */
+  :global(body) {
+    scroll-snap-type: y proximity;
   }
 
-  .animate-fadeIn {
-    animation: fadeIn 0.6s ease-out forwards;
+  section {
+    scroll-snap-align: start;
   }
 </style>
-
 <script>
   // Add type annotations for the event listener
   document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((anchor) => {
