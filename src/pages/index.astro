@@ -1,14 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ArgumentCard from '../components/ArgumentCard.svelte';
-import SnapchatFAB from '../components/SnapchatFAB.svelte';
-import Footer from '../components/Footer.svelte';
 import Testimonial from '../components/Testimonial.svelte';
+import MainCTA from '../components/MainCTA.svelte';
+import TrustIndicators from '../components/TrustIndicators.svelte';
+import Footer from '../components/Footer.svelte';
 import { getLangFromUrl, getTranslations } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = getTranslations(lang);
-
 
 const testimonials = [
   {
@@ -19,7 +19,8 @@ const testimonials = [
     location: 'Paris',
     quote: 'This platform helped me explore my desires in a safe and comfortable environment. The professional approach made all the difference.',
     rating: 5,
-    verified: true
+    verified: true,
+    activeTime: 'Active Now'
   },
   {
     id: '2',
@@ -29,28 +30,17 @@ const testimonials = [
     location: 'Berlin',
     quote: 'I gained so much confidence through my experiences here. The team is incredibly supportive and professional.',
     rating: 4,
-    verified: true
+    verified: true,
+    activeTime: '5m ago'
   }
 ];
 
 const marketingArgs = [
   {
-    emoji: "🔍",
-    title: t.marketing.explore.title,
-    description: t.marketing.explore.description,
-    buttonText: t.marketing.explore.button
-  },
-  {
     emoji: "✨",
     title: t.marketing.desires.title,
     description: t.marketing.desires.description,
     buttonText: t.marketing.desires.button
-  },
-  {
-    emoji: "🎯",
-    title: t.marketing.practice.title,
-    description: t.marketing.practice.description,
-    buttonText: t.marketing.practice.button
   },
   {
     emoji: "🔒",
@@ -63,35 +53,31 @@ const marketingArgs = [
     title: t.marketing.wellbeing.title,
     description: t.marketing.wellbeing.description,
     buttonText: t.marketing.wellbeing.button
-  },
-  {
-    emoji: "🌟",
-    title: t.marketing.joy.title,
-    description: t.marketing.joy.description,
-    buttonText: t.marketing.joy.button
   }
 ];
 ---
-<Layout title={t.nav.logo}>
 
-  <!-- Hero section -->
-  <section class="min-h-screen flex flex-col items-center justify-center relative px-4 py-20 bg-gradient-to-b from-pink-950/30 to-transparent">
-     <div class="text-center max-w-3xl mx-auto">
+<Layout title={t.nav.logo}>
+  <!-- Hero Section -->
+  <section class="min-h-screen flex flex-col items-center justify-center relative px-4 py-20">
+    <div class="hero-content text-center max-w-3xl mx-auto">
       <h1 class="text-4xl md:text-6xl font-bold text-pink-100 mb-6 animate-fade-in">
         {t.hero.title}
       </h1>
       <p class="text-xl md:text-2xl text-pink-200/90 leading-relaxed mb-8 animate-fade-in-delay">
         {t.hero.subtitle}
       </p>
-      <button class="main-cta animate-fade-in-delay-2">
-        {t.cta.main}
-      </button>
+      <MainCTA
+        client:visible
+        username="your_snapchat"
+        title="Start Your Journey Today"
+        subtitle="Join thousands already experiencing genuine connections"
+      />
     </div>
 
-    <!-- Scroll indicator -->
     <div class="absolute bottom-8 animate-bounce">
       <div class="flex flex-col items-center text-pink-300/60">
-        <span class="text-sm mb-2">Scroll to explore</span>
+        <span class="text-sm mb-2">Scroll to discover</span>
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>
@@ -99,105 +85,80 @@ const marketingArgs = [
     </div>
   </section>
 
-  <!-- Marketing Arguments Section -->
-  <section class="bg-pink-900/10 backdrop-blur-md py-20 px-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-      {marketingArgs.map((arg) => (
-        <div class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-pink-500/10 hover:shadow-xl">
-          <ArgumentCard
-            client:load
-            {...arg}
-          />
-        </div>
-      ))}
-    </div>
-  </section>
-
+  <!-- Social Proof -->
   <section class="py-20">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl md:text-4xl font-light text-pink-100 text-center mb-12">
         Real Stories from Real People
       </h2>
-
       <Testimonial testimonials={testimonials} client:visible />
     </div>
   </section>
 
-  <!-- Social Connection Section -->
-  <section class="bg-pink-800/20 backdrop-blur-md py-20 px-4 text-center">
-    <h2 class="text-3xl md:text-4xl font-light text-pink-100 mb-4">
-      Ready to Connect?
-    </h2>
-    <p class="text-xl text-pink-200/80 mb-8 max-w-2xl mx-auto">
-      Join thousands of members already experiencing genuine connections. Add us on Snapchat to get started!
-    </p>
-
-    <div class="flex flex-col items-center gap-6">
-      <SnapchatFAB
-        username="your_snapchat"
-        client:load
-        class="transform scale-125 hover:scale-135"
-      />
-      <p class="text-sm text-pink-200/60">
-        Usually responds within 5 minutes
-      </p>
+  <!-- Key Benefits -->
+  <section class="py-20 bg-pink-900/5">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {marketingArgs.map((arg) => (
+          <div class="transform transition-all duration-300 hover:-translate-y-1">
+            <ArgumentCard {...arg} client:visible />
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
-  <Footer
-    client:visible
-    socials={[
-      {
-        platform: 'Twitter',
-        url: 'https://twitter.com/connectme',
-        icon: '<svg class="w-6 h-6">...</svg>'
-      },
-      {
-        platform: 'Instagram',
-        url: 'https://instagram.com/connectme',
-        icon: '<svg class="w-6 h-6">...</svg>'
-      },
-      {
-        platform: 'Snapchat',
-        url: 'https://snapchat.com/add/connectme',
-        icon: '<svg class="w-6 h-6">...</svg>'
-      }
-    ]}
-    quickLinks={[
-      {
-        title: 'Company',
-        items: [
-          { label: 'About Us', href: '/about' },
-          { label: 'Blog', href: '/blog' },
-          { label: 'Careers', href: '/careers' },
-          { label: 'Contact', href: '/contact' }
-        ]
-      },
-      {
-        title: 'Support',
-        items: [
-          { label: 'Help Center', href: '/help' },
-          { label: 'Safety Tips', href: '/safety' },
-          { label: 'FAQ', href: '/faq' },
-          { label: 'Community Guidelines', href: '/guidelines' }
-        ]
-      }
-    ]}
-  />
+  <!-- Trust Indicators -->
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <TrustIndicators client:visible />
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-20 bg-gradient-to-b from-pink-900/20 to-transparent">
+    <div class="container mx-auto px-4">
+      <MainCTA
+        client:visible
+        username="your_snapchat"
+        title="Ready to Connect?"
+        subtitle="Start your journey to genuine connections today"
+      />
+    </div>
+  </section>
+
+  <Footer snapchatUsername="your_snapchat" client:visible />
 </Layout>
 
 <style>
+  section {
+    scroll-margin-top: 4rem;
+  }
+
+  .hero-content {
+    @apply relative z-10;
+  }
+
+  /* Add a subtle gradient overlay to the hero */
+  section:first-of-type::before {
+    content: '';
+    @apply absolute inset-0;
+    @apply bg-gradient-to-b from-pink-950/30 to-transparent;
+    @apply pointer-events-none;
+  }
+
+  /* Smooth scrolling */
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+
+  /* Animation classes */
   .animate-fade-in {
     animation: fadeIn 1s ease-out forwards;
   }
 
   .animate-fade-in-delay {
     animation: fadeIn 1s ease-out 0.3s forwards;
-    opacity: 0;
-  }
-
-  .animate-fade-in-delay-2 {
-    animation: fadeIn 1s ease-out 0.6s forwards;
     opacity: 0;
   }
 
@@ -211,71 +172,4 @@ const marketingArgs = [
       transform: translateY(0);
     }
   }
-
-  .main-cta {
-    @apply bg-gradient-to-r from-pink-500 to-rose-400;
-    @apply text-white;
-    @apply px-10 py-4;
-    @apply rounded-full;
-    @apply text-lg font-semibold;
-    @apply shadow-lg shadow-pink-500/20;
-    @apply transform transition-all duration-300;
-    @apply hover:shadow-xl hover:-translate-y-1 hover:from-pink-600 hover:to-rose-500;
-    @apply active:scale-95;
-  }
-
-  .stats-card {
-    @apply bg-pink-900/10;
-    @apply backdrop-blur-md;
-    @apply rounded-xl;
-    @apply p-6;
-    @apply border border-pink-200/10;
-    @apply transition-all duration-300;
-    @apply hover:bg-pink-900/20;
-  }
-
-  /* Smooth scrolling for the whole page */
-  :global(html) {
-    scroll-behavior: smooth;
-  }
-
-  /* Create a snap-scrolling effect */
-  :global(body) {
-    scroll-snap-type: y proximity;
-  }
-
-  section {
-    scroll-snap-align: start;
-  }
 </style>
-
-<script>
-  // Add type annotations for the event listener
-  document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', function(this: HTMLAnchorElement, e: MouseEvent) {
-      e.preventDefault();
-      const href = this.getAttribute('href');
-      if (!href) return;
-      document.querySelector(href)?.scrollIntoView({
-        behavior: 'smooth'
-      });
-    });
-  });
-
-  // Add types for Intersection Observer
-  const observer = new IntersectionObserver(
-    (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fadeIn');
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
-
-  // Add type for card elements
-  document.querySelectorAll<HTMLElement>('.card').forEach((card) => {
-    observer.observe(card);
-  });
-</script>
