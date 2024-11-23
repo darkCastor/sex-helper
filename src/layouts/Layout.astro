@@ -4,7 +4,6 @@ interface Props {
     title: string;
 }
 import LanguageSelector from '../components/LanguageSelector.svelte';
-import SnapchatFAB from '../components/SnapchatFAB.svelte';
 
 // Extract title from props using Astro.props
 const { title } = Astro.props as Props;
@@ -34,9 +33,8 @@ const currentLang = Astro.url.pathname.split('/')[1] || 'en';
                 {title}
               </div>
 
-              <!-- Right section with Snapchat and Language -->
+              <!-- Right section with Language -->
               <div class="flex items-center gap-4">
-                <SnapchatFAB username="your_snapchat" client:load />
                 <LanguageSelector currentLang={currentLang} client:load />
               </div>
             </div>

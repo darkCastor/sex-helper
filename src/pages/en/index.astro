@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ArgumentCard from '../../components/ArgumentCard.svelte';
-import SocialIcons from '../../components/SocialIcons.svelte';
+import SnapchatFAB from '../../components/SnapchatFAB.svelte';
 import Footer from '../../components/Footer.svelte';
 import Testimonial from '../../components/Testimonial.svelte';
 import { getLangFromUrl, getTranslations } from '../../i18n/utils';
@@ -125,9 +125,22 @@ const marketingArgs = [
 
   <!-- Social Connection Section -->
   <section class="bg-pink-800/20 backdrop-blur-md py-20 px-4 text-center">
-    <h2 class="text-3xl md:text-4xl font-light text-pink-100 mb-8">Connect With Us</h2>
-    <div class="flex justify-center gap-6">
-      <SocialIcons snapchatUsername="your_snapchat" client:load />
+    <h2 class="text-3xl md:text-4xl font-light text-pink-100 mb-4">
+      Ready to Connect?
+    </h2>
+    <p class="text-xl text-pink-200/80 mb-8 max-w-2xl mx-auto">
+      Join thousands of members already experiencing genuine connections. Add us on Snapchat to get started!
+    </p>
+
+    <div class="flex flex-col items-center gap-6">
+      <SnapchatFAB
+        username="your_snapchat"
+        client:load
+        class="transform scale-125 hover:scale-135"
+      />
+      <p class="text-sm text-pink-200/60">
+        Usually responds within 5 minutes
+      </p>
     </div>
   </section>
 

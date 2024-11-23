@@ -1,12 +1,37 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ArgumentCard from '../../components/ArgumentCard.svelte';
-import LanguageSelector from '../../components/LanguageSelector.svelte';
-import SocialIcons from '../../components/SocialIcons.svelte';
+import SnapchatFAB from '../../components/SnapchatFAB.svelte';
+import Footer from '../../components/Footer.svelte';
+import Testimonial from '../../components/Testimonial.svelte';
 import { getLangFromUrl, getTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = getTranslations(lang);
+
+
+const testimonials = [
+  {
+    id: '1',
+    avatar: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/8b/8ba5a58e631e40f1eeac75dfc1caf7d40cb4f1eb_full.jpg',
+    name: 'Sophie',
+    age: 24,
+    location: 'Paris',
+    quote: 'This platform helped me explore my desires in a safe and comfortable environment. The professional approach made all the difference.',
+    rating: 5,
+    verified: true
+  },
+  {
+    id: '2',
+    avatar: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/37/378bd4bf97da5293ae671ed7a7cdf9eed4894f72_full.jpg',
+    name: 'Marcus',
+    age: 28,
+    location: 'Berlin',
+    quote: 'I gained so much confidence through my experiences here. The team is incredibly supportive and professional.',
+    rating: 4,
+    verified: true
+  }
+];
 
 const marketingArgs = [
   {
@@ -48,13 +73,10 @@ const marketingArgs = [
 ];
 ---
 <Layout title={t.nav.logo}>
+
   <!-- Hero section -->
   <section class="min-h-screen flex flex-col items-center justify-center relative px-4 py-20 bg-gradient-to-b from-pink-950/30 to-transparent">
-    <div class="absolute top-4 right-4 z-50">
-      <LanguageSelector currentLang={lang} client:load />
-    </div>
-
-    <div class="text-center max-w-3xl mx-auto">
+     <div class="text-center max-w-3xl mx-auto">
       <h1 class="text-4xl md:text-6xl font-bold text-pink-100 mb-6 animate-fade-in">
         {t.hero.title}
       </h1>
@@ -91,23 +113,77 @@ const marketingArgs = [
     </div>
   </section>
 
-  <!-- Social Connection Section -->
-  <section class="bg-pink-800/20 backdrop-blur-md py-20 px-4 text-center">
-    <h2 class="text-3xl md:text-4xl font-light text-pink-100 mb-8">Connect With Us</h2>
-    <div class="flex justify-center gap-6">
-      <SocialIcons snapchatUsername="your_snapchat" client:load />
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-light text-pink-100 text-center mb-12">
+        Real Stories from Real People
+      </h2>
+
+      <Testimonial testimonials={testimonials} client:visible />
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="border-t border-pink-200/10 py-8 bg-pink-950/30 backdrop-blur-md">
-    <div class="container mx-auto px-4">
-      <div class="text-center text-pink-200/60">
-        <p class="text-sm mb-2">{t.footer.legal}</p>
-        <p class="text-xs">&copy; {new Date().getFullYear()} ConnectMe. {t.footer.copyright}</p>
-      </div>
+  <!-- Social Connection Section -->
+  <section class="bg-pink-800/20 backdrop-blur-md py-20 px-4 text-center">
+    <h2 class="text-3xl md:text-4xl font-light text-pink-100 mb-4">
+      Ready to Connect?
+    </h2>
+    <p class="text-xl text-pink-200/80 mb-8 max-w-2xl mx-auto">
+      Join thousands of members already experiencing genuine connections. Add us on Snapchat to get started!
+    </p>
+
+    <div class="flex flex-col items-center gap-6">
+      <SnapchatFAB
+        username="your_snapchat"
+        client:load
+        class="transform scale-125 hover:scale-135"
+      />
+      <p class="text-sm text-pink-200/60">
+        Usually responds within 5 minutes
+      </p>
     </div>
-  </footer>
+  </section>
+
+  <Footer
+    client:visible
+    socials={[
+      {
+        platform: 'Twitter',
+        url: 'https://twitter.com/connectme',
+        icon: '<svg class="w-6 h-6">...</svg>'
+      },
+      {
+        platform: 'Instagram',
+        url: 'https://instagram.com/connectme',
+        icon: '<svg class="w-6 h-6">...</svg>'
+      },
+      {
+        platform: 'Snapchat',
+        url: 'https://snapchat.com/add/connectme',
+        icon: '<svg class="w-6 h-6">...</svg>'
+      }
+    ]}
+    quickLinks={[
+      {
+        title: 'Company',
+        items: [
+          { label: 'About Us', href: '/about' },
+          { label: 'Blog', href: '/blog' },
+          { label: 'Careers', href: '/careers' },
+          { label: 'Contact', href: '/contact' }
+        ]
+      },
+      {
+        title: 'Support',
+        items: [
+          { label: 'Help Center', href: '/help' },
+          { label: 'Safety Tips', href: '/safety' },
+          { label: 'FAQ', href: '/faq' },
+          { label: 'Community Guidelines', href: '/guidelines' }
+        ]
+      }
+    ]}
+  />
 </Layout>
 
 <style>
