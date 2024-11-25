@@ -35,7 +35,7 @@ const currentLang = Astro.url.pathname.split('/')[1] || 'en';
 
               <!-- Right section with Language -->
               <div class="flex items-center gap-4">
-                <LanguageSelector currentLang={currentLang} client:load />
+                <LanguageSelector currentLang={currentLang} client:idle />
               </div>
             </div>
           </div>
