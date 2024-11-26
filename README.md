@@ -31,3 +31,6 @@ features :
  - your wellbeing is our priority
  - discover the pleasure and joy
  - gain confidence
+ - never getting judge
+ - just be yourself
+ - ask what you want to know
