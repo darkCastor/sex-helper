@@ -7,6 +7,9 @@ goals :
  - determining their sexuality
  - massage for prepaaring the meat
 
+target :
+ - women 18 -35 years old, but will doo all public to avoid differentss problems like reputation
+
 stack :
  - astrojs
  - svelte
@@ -22,6 +25,8 @@ features :
  - web first, mobile second
  - add snapchat link
  - snapchat account
+ - telegram account
+ - language should be adapted to our target
 
  "marketing arguments" :
  - explore your sexuality
@@ -140,3 +145,6 @@ features :
  - Addresses different user concerns at appropriate points
  - Builds trust progressively
  - Ends with clear call-to-action
+
+- this application won't be for a team finally but only for one person which is me because it's too difficult to find good people for that project.
+- what about make a about page for me ?
