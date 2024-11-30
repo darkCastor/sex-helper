@@ -46,6 +46,7 @@ features :
  - last minute sex helper if free
  - retrouver les plaisirs simple de la vie
  - tendresse et connection
+ - everybody is unique
 
  useful claudo propositions ;
  // Top section - Core Benefits (3 main marketing arguments)
