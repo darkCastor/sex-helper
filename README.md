@@ -6,6 +6,8 @@ goals :
  - make people realize their fantasms (if posssible)
  - determining their sexuality
  - massage for prepaaring the meat
+ - first meet let's do the 36 love questions to see compabilities between us
+
 
 target :
  - women 18 -35 years old, but will doo all public to avoid differentss problems like reputation
@@ -39,6 +41,11 @@ features :
  - never getting judge
  - just be yourself
  - ask what you want to know
+ - gain in body positivity
+ - fill the boredem of daily life with fun and joy
+ - last minute sex helper if free
+ - retrouver les plaisirs simple de la vie
+ - tendresse et connection
 
  useful claudo propositions ;
  // Top section - Core Benefits (3 main marketing arguments)
