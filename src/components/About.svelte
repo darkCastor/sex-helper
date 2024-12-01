@@ -1,119 +1,205 @@
 <script lang="ts">
   const values = [
     {
-      emoji: "💖",
-      title: "Tackle Loneliness",
-      description: "Creating meaningful connections in an increasingly isolated world"
+      emoji: "💫",
+      title: "Safe Space",
+      description: "A judgment-free environment where you can be yourself"
+    },
+    {
+      emoji: "🌸",
+      title: "Natural Flow",
+      description: "Everything moves at your own comfortable pace"
     },
     {
       emoji: "✨",
-      title: "Self-Discovery",
-      description: "Supporting your journey of sexual exploration and personal growth"
+      title: "Real Connection",
+      description: "Genuine human moments without pressure or expectations"
     },
     {
-      emoji: "🤝",
-      title: "Real Connections",
-      description: "Facilitating genuine human bonds without complicated commitments"
-    },
-    {
-      emoji: "💫",
-      title: "Fantasy Fulfillment",
-      description: "Safe space to explore and realize your desires"
+      emoji: "💝",
+      title: "Self Discovery",
+      description: "Learn about yourself in a supportive environment"
     }
   ];
 
   const process = [
     {
       emoji: "👋",
-      title: "Initial Contact",
-      description: "Connect with us on Snapchat for a casual, no-pressure chat"
+      title: "Say Hi",
+      description: "Start with a casual chat on Snapchat - no pressure, just friendly vibes",
+      tips: ["Be yourself", "Ask anything", "No rush"]
     },
     {
-      emoji: "🗣️",
-      title: "The 36 Questions",
-      description: "We use proven connection-building questions to ensure compatibility"
+      emoji: "☕️",
+      title: "Get Comfy",
+      description: "We'll take time to know each other through fun and engaging conversation",
+      tips: ["Share interests", "Express desires", "Build trust"]
     },
     {
-      emoji: "💆‍♀️",
-      title: "Relaxation Session",
-      description: "Professional massage to help you feel comfortable and at ease"
+      emoji: "✨",
+      title: "Connect",
+      description: "If we click, we'll plan something special that matches your comfort level",
+      tips: ["Your pace", "Your boundaries", "Your experience"]
     },
     {
-      emoji: "💝",
-      title: "Personal Experience",
-      description: "Enjoy a tailored experience focused on your comfort and desires"
+      emoji: "💫",
+      title: "Experience",
+      description: "Enjoy a natural, flowing experience focused entirely on your wellbeing",
+      tips: ["Feel free", "Be present", "Just enjoy"]
     }
   ];
 </script>
 
-<section class="py-20 bg-pink-900/5" id="about">
+<section class="py-20 bg-gradient-to-b from-pink-950/10 to-transparent" id="about">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl md:text-4xl font-light text-pink-100 text-center mb-6">
-      About Us
+    <h2 class="text-3xl md:text-4xl font-light text-white text-center mb-6">
+      How It Works
     </h2>
-    <p class="text-xl text-pink-200/80 text-center max-w-3xl mx-auto mb-16 leading-relaxed">
-      We're dedicated to helping people rediscover genuine connections and explore their sexuality in a safe,
-      professional environment. Our approach combines comfort, discretion, and personal growth.
+    <p class="text-xl text-white/80 text-center max-w-3xl mx-auto mb-16 leading-relaxed">
+      A natural, pressure-free journey to connection and self-discovery. Everything moves at your pace,
+      with your comfort being the priority at every step.
     </p>
 
-    <!-- Values Grid -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-      {#each values as value}
-        <div class="value-card">
-          <div class="text-4xl mb-4">{value.emoji}</div>
-          <h3 class="text-xl text-pink-100 mb-2">{value.title}</h3>
-          <p class="text-pink-200/80">{value.description}</p>
-        </div>
-      {/each}
-    </div>
-
     <!-- Process Timeline -->
-    <h3 class="text-2xl md:text-3xl font-light text-pink-100 text-center mb-12">
-      Our Process
-    </h3>
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {#each process as step, i}
-        <div class="process-card">
-          <div class="step-number">{i + 1}</div>
-          <div class="text-3xl mb-4">{step.emoji}</div>
-          <h4 class="text-lg text-pink-100 mb-2">{step.title}</h4>
-          <p class="text-pink-200/80">{step.description}</p>
-        </div>
-      {/each}
+    <div class="relative max-w-5xl mx-auto">
+      <!-- Connection Line -->
+      <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-pink-400/20 to-transparent -translate-y-1/2 hidden md:block"></div>
+
+      <div class="grid md:grid-cols-4 gap-8 relative">
+        {#each process as step, i}
+          <div class="process-card group">
+            <div class="step-number">
+              <span class="number">{i + 1}</span>
+              <span class="pulse"></span>
+            </div>
+
+            <div class="emoji-wrapper">
+              <div class="emoji">{step.emoji}</div>
+              <div class="emoji-bg" aria-hidden="true">{step.emoji}</div>
+            </div>
+
+            <h4 class="title">{step.title}</h4>
+            <p class="description">{step.description}</p>
+
+            <!-- Tips that appear on hover -->
+            <div class="tips-container">
+              {#each step.tips as tip}
+                <span class="tip">{tip}</span>
+              {/each}
+            </div>
+          </div>
+        {/each}
+      </div>
     </div>
   </div>
 </section>
 
 <style lang="postcss">
-  .value-card {
-    @apply bg-pink-900/10 backdrop-blur-md;
-    @apply rounded-2xl;
-    @apply p-6;
-    @apply border border-pink-200/20;
-    @apply text-center;
-    @apply transition-all duration-300;
-    @apply hover:bg-pink-900/20;
-    @apply hover:transform hover:-translate-y-1;
-  }
-
   .process-card {
-    @apply bg-pink-900/10 backdrop-blur-md;
+    @apply bg-pink-950/20 backdrop-blur-md;
     @apply rounded-2xl;
     @apply p-6;
     @apply border border-pink-200/20;
     @apply text-center;
-    @apply transition-all duration-300;
-    @apply hover:bg-pink-900/20;
+    @apply transition-all duration-500;
+    @apply hover:bg-pink-950/30;
     @apply relative;
+    @apply flex flex-col items-center;
   }
 
   .step-number {
-    @apply absolute -top-3 -right-3;
-    @apply w-8 h-8;
-    @apply bg-pink-500;
+    @apply relative;
+    @apply w-10 h-10;
+    @apply -mt-8 mb-4;
+    @apply bg-gradient-to-br from-pink-400 to-purple-500;
     @apply rounded-full;
     @apply flex items-center justify-center;
-    @apply text-white text-sm font-medium;
+    @apply text-white font-medium;
     @apply border-2 border-pink-900;
+    @apply z-10;
+  }
+
+  .pulse {
+    @apply absolute inset-0;
+    @apply rounded-full;
+    @apply bg-pink-400;
+    @apply opacity-0;
+    @apply group-hover:animate-ping;
+  }
+
+  .emoji-wrapper {
+    @apply relative;
+    @apply w-16 h-16;
+    @apply mb-4;
+  }
+
+  .emoji {
+    @apply text-4xl;
+    @apply absolute inset-0;
+    @apply flex items-center justify-center;
+    @apply z-10;
+    @apply transition-transform duration-300;
+    @apply group-hover:scale-110;
+    @apply select-none;
+  }
+
+  .emoji-bg {
+    @apply absolute inset-0;
+    @apply text-5xl;
+    @apply flex items-center justify-center;
+    @apply opacity-10;
+    @apply blur-xl;
+    @apply scale-150;
+    @apply select-none;
+  }
+
+  .title {
+    @apply text-white font-medium;
+    @apply text-lg;
+    @apply mb-2;
+  }
+
+  .description {
+    @apply text-white/80;
+    @apply text-sm;
+    @apply leading-relaxed;
+  }
+
+  .tips-container {
+    @apply mt-4;
+    @apply flex flex-wrap gap-2 justify-center;
+    @apply opacity-0 translate-y-2;
+    @apply transition-all duration-300;
+    @apply group-hover:opacity-100 group-hover:translate-y-0;
+  }
+
+  .tip {
+    @apply bg-pink-400/10;
+    @apply px-3 py-1;
+    @apply rounded-full;
+    @apply text-xs;
+    @apply text-pink-200;
+    @apply border border-pink-400/20;
+  }
+
+  /* Animate steps sequentially */
+  .process-card {
+    animation: fadeIn 0.5s ease-out backwards;
+  }
+
+  .process-card:nth-child(1) { animation-delay: 0.1s; }
+  .process-card:nth-child(2) { animation-delay: 0.2s; }
+  .process-card:nth-child(3) { animation-delay: 0.3s; }
+  .process-card:nth-child(4) { animation-delay: 0.4s; }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>
