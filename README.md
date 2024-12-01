@@ -29,6 +29,8 @@ features :
  - snapchat account
  - telegram account
  - language should be adapted to our target
+ - add a about part for who am i and why i done that
+ - add a FAQ or at least a simple presentation of different steps of process
 
  "marketing arguments" :
  - explore your sexuality
@@ -144,15 +146,3 @@ features :
    <!-- Footer -->
  </Layout>
  ```
-
- This structure:
- - Maintains focus on core benefits
- - Provides additional information progressively
- - Creates better visual hierarchy
- - Keeps user engagement through the page
- - Addresses different user concerns at appropriate points
- - Builds trust progressively
- - Ends with clear call-to-action
-
-- this application won't be for a team finally but only for one person which is me because it's too difficult to find good people for that project.
-- what about make a about page for me ?
