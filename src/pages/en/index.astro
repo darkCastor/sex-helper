@@ -4,11 +4,55 @@ import ArgumentCard from '../../components/ArgumentCard.svelte';
 import Testimonial from '../../components/Testimonial.svelte';
 import MainCTA from '../../components/MainCTA.svelte';
 import TrustIndicators from '../../components/TrustIndicators.svelte';
+import FAQ from '../../components/FAQ.svelte';
 import Footer from '../../components/Footer.svelte';
+import About from '../../components/About.svelte';
 import { getLangFromUrl, getTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = getTranslations(lang);
+
+const snapchatUsername = "your_snapchat";
+const telegramUsername = "your_telegram";
+
+const marketingArgs = [
+  {
+    emoji: "💖",
+    title: "Genuine Connections",
+    description: "Experience real human connections in a judgment-free space",
+    buttonText: "Connect Now"
+  },
+  {
+    emoji: "✨",
+    title: "Discover Yourself",
+    description: "Explore your desires and sexuality safely",
+    buttonText: "Learn More"
+  },
+  {
+    emoji: "💆‍♀️",
+    title: "Professional Care",
+    description: "Expert guidance and support throughout your journey",
+    buttonText: "Meet Team"
+  },
+  {
+    emoji: "🔒",
+    title: "100% Private",
+    description: "Your privacy and discretion are guaranteed",
+    buttonText: "Our Promise"
+  },
+  {
+    emoji: "💫",
+    title: "Build Confidence",
+    description: "Gain confidence and embrace your authentic self",
+    buttonText: "Start Journey"
+  },
+  {
+    emoji: "🌹",
+    title: "Premium Experience",
+    description: "High-quality, curated encounters for your wellbeing",
+    buttonText: "See Details"
+  }
+];
 
 const testimonials = [
   {
@@ -35,64 +79,40 @@ const testimonials = [
   }
 ];
 
-const marketingArgs = [
+const faqs = [
   {
-    emoji: "✨",
-    title: t.marketing.desires.title,
-    description: t.marketing.desires.description,
-    buttonText: t.marketing.desires.button
+    question: "How does it work?",
+    answer: "Our process is simple and discreet. Connect with us on Snapchat, have a casual chat to discuss your interests, and we'll guide you through the rest."
   },
+  {
+    question: "Is my privacy protected?",
+    answer: "Absolutely. We take privacy seriously and ensure all interactions are completely confidential."
+  },
+  {
+    question: "What can I expect?",
+    answer: "A professional, judgment-free experience focused on your comfort and wellbeing. We offer guidance, support, and a safe space to explore."
+  },
+  {
+    question: "How do I get started?",
+    answer: "Simply add us on Snapchat and send us a message. We'll take care of the rest!"
+  }
+];
+
+const trustItems = [
   {
     emoji: "🔒",
-    title: t.marketing.privacy.title,
-    description: t.marketing.privacy.description,
-    buttonText: t.marketing.privacy.button
+    title: "100% Private",
+    description: "Your privacy is guaranteed"
   },
   {
-    emoji: "💝",
-    title: t.marketing.wellbeing.title,
-    description: t.marketing.wellbeing.description,
-    buttonText: t.marketing.wellbeing.button
+    emoji: "✨",
+    title: "Verified Members",
+    description: "Real people, real connections"
   },
   {
-    emoji: "💋", // More sensual than 🌟
-    title: "Personal Growth Journey",
-    description: "Discover yourself in a supportive, judgment-free environment"
-  },
-  {
-    emoji: "💝", // More romantic than 🤝
-    title: "Genuine Connections",
-    description: "Meet like-minded individuals who share your interests"
-  },
-  {
-    emoji: "✨", // Keeps the magic/sparkle theme
-    title: "Build Confidence",
-    description: "Develop self-assurance and embrace your authentic self"
-  },
-  {
-    emoji: "🌹", // More romantic than 🎯
-    title: "Clear Boundaries",
-    description: "Experience connections on your own terms, always"
-  },
-  {
-    emoji: "💆‍♀️", // Massage/relaxation theme
-    title: "Holistic Wellbeing",
-    description: "Focus on both emotional and physical satisfaction"
-  },
-  {
-    emoji: "👄", // More suggestive than 💭
-    title: "Open Communication",
-    description: "Ask questions and learn in a safe, professional space"
-  },
-  {
-    emoji: "💫", // Keeps the magical experience theme
-    title: "Guided Experience",
-    description: "Professional support for your personal journey"
-  },
-  {
-    emoji: "🔒", // Keeps the security theme
-    title: "Discreet & Secure",
-    description: "Your privacy and comfort are our top priorities"
+    emoji: "💫",
+    title: "24/7 Support",
+    description: "Professional help anytime"
   }
 ];
 ---
@@ -102,14 +122,15 @@ const marketingArgs = [
   <section class="min-h-screen flex flex-col items-center justify-center relative px-4 py-20">
     <div class="hero-content text-center max-w-3xl mx-auto">
       <h1 class="text-4xl md:text-6xl font-bold text-pink-100 mb-6 animate-fade-in">
-        {t.hero.title}
+        Discover Genuine Connections
       </h1>
       <p class="text-xl md:text-2xl text-pink-200/90 leading-relaxed mb-8 animate-fade-in-delay">
-        {t.hero.subtitle}
+        Experience real human connections in a safe, judgment-free environment. Professional guidance for your journey of self-discovery.
       </p>
       <MainCTA
         client:visible
-        username="your_snapchat"
+        snapchatUsername={snapchatUsername}
+        telegramUsername={telegramUsername}
         title="Start Your Journey Today"
         subtitle="Join thousands already experiencing genuine connections"
       />
@@ -124,6 +145,15 @@ const marketingArgs = [
       </div>
     </div>
   </section>
+
+  <!-- Trust Indicators -->
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <TrustIndicators items={trustItems} client:idle />
+    </div>
+  </section>
+
+  <About client:visible />
 
   <!-- Social Proof -->
   <section class="py-20">
@@ -148,10 +178,13 @@ const marketingArgs = [
     </div>
   </section>
 
-  <!-- Trust Indicators -->
+  <!-- FAQ Section -->
   <section class="py-20">
-    <div class="container mx-auto px-4">
-      <TrustIndicators client:idle />
+    <div class="container mx-auto px-4 max-w-3xl">
+      <h2 class="text-3xl md:text-4xl font-light text-pink-100 text-center mb-12">
+        Frequently Asked Questions
+      </h2>
+      <FAQ faqs={faqs} client:idle />
     </div>
   </section>
 
@@ -166,8 +199,11 @@ const marketingArgs = [
       />
     </div>
   </section>
-
-  <Footer snapchatUsername="your_snapchat" client:idle />
+  <Footer
+    snapchatUsername={snapchatUsername}
+    telegramUsername={telegramUsername}
+    client:idle
+  />
 </Layout>
 
 <style>

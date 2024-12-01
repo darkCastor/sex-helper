@@ -1,11 +1,9 @@
 <script lang="ts">
-  interface TrustItem {
+  export let items: {
     emoji: string;
     title: string;
     description: string;
-  }
-
-  export let items: TrustItem[] = [
+  }[] = [
     {
       emoji: "🔒",
       title: "100% Private",
@@ -18,8 +16,8 @@
     },
     {
       emoji: "💫",
-      title: "Instant Access",
-      description: "No long registration"
+      title: "24/7 Support",
+      description: "Professional help anytime"
     }
   ];
 </script>
@@ -27,9 +25,9 @@
 <div class="grid md:grid-cols-3 gap-6 text-center">
   {#each items as item}
     <div class="trust-item">
-      <div class="text-3xl mb-2">{item.emoji}</div>
-      <h3 class="text-xl mb-1 text-pink-100 font-light">{item.title}</h3>
-      <p class="text-sm text-pink-200/60">{item.description}</p>
+      <div class="emoji">{item.emoji}</div>
+      <h3 class="title">{item.title}</h3>
+      <p class="description">{item.description}</p>
     </div>
   {/each}
 </div>
@@ -43,5 +41,17 @@
     @apply border border-pink-200/10;
     @apply transition-all duration-300;
     @apply hover:bg-pink-900/20;
+  }
+
+  .emoji {
+    @apply text-3xl mb-2;
+  }
+
+  .title {
+    @apply text-xl mb-1 text-pink-100 font-light;
+  }
+
+  .description {
+    @apply text-sm text-pink-200/60;
   }
 </style>
