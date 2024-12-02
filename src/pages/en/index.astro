@@ -97,23 +97,6 @@ const faqs = [
   }
 ];
 
-const trustItems = [
-  {
-    emoji: "🔒",
-    title: "100% Private",
-    description: "Your privacy is guaranteed"
-  },
-  {
-    emoji: "✨",
-    title: "Verified Members",
-    description: "Real people, real connections"
-  },
-  {
-    emoji: "💫",
-    title: "24/7 Support",
-    description: "Professional help anytime"
-  }
-];
 ---
 
 <Layout title={t.nav.logo}>
@@ -161,11 +144,18 @@ const trustItems = [
   <section class="py-20 bg-pink-900/5">
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {marketingArgs.map((arg) => (
-          <div class="transform transition-all duration-300 hover:-translate-y-1">
-            <ArgumentCard {...arg} client:visible />
-          </div>
-        ))}
+      {marketingArgs.map((arg) => (
+        <div class="transform transition-all duration-300 hover:-translate-y-1">
+          <ArgumentCard
+            emoji={arg.emoji}
+            title={arg.title}
+            description={arg.description}
+            buttonText={arg.buttonText}
+            target="_blank"
+            client:visible
+          />
+        </div>
+      ))}
       </div>
     </div>
   </section>
@@ -176,7 +166,7 @@ const trustItems = [
       <h2 class="text-3xl md:text-4xl font-light text-pink-100 text-center mb-12">
         Frequently Asked Questions
       </h2>
-      <FAQ faqs={faqs} client:idle />
+      <FAQ {faqs} client:idle />
     </div>
   </section>
 

@@ -4,6 +4,7 @@
   export let description: string;
   export let buttonText: string = "Learn More";
   export let onClick: () => void = () => {};
+  export let target: string = "_self"; // Add default target prop
 </script>
 
 <div class="card">

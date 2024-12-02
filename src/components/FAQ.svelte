@@ -1,8 +1,10 @@
 <script lang="ts">
-  export let faqs: {
+  interface FAQItem {
     question: string;
     answer: string;
-  }[] = [];
+  }
+
+  export let faqs: FAQItem[] = [];
 </script>
 
 <div class="space-y-6">
