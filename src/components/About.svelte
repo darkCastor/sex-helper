@@ -1,27 +1,4 @@
 <script lang="ts">
-  const values = [
-    {
-      emoji: "💫",
-      title: "Safe Space",
-      description: "A judgment-free environment where you can be yourself"
-    },
-    {
-      emoji: "🌸",
-      title: "Natural Flow",
-      description: "Everything moves at your own comfortable pace"
-    },
-    {
-      emoji: "✨",
-      title: "Real Connection",
-      description: "Genuine human moments without pressure or expectations"
-    },
-    {
-      emoji: "💝",
-      title: "Self Discovery",
-      description: "Learn about yourself in a supportive environment"
-    }
-  ];
-
   const process = [
     {
       emoji: "👋",
