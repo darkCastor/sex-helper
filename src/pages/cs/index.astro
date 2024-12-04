@@ -1,104 +1,97 @@
 ---
+
 import Layout from '../../layouts/Layout.astro';
 import ArgumentCard from '../../components/ArgumentCard.svelte';
 import Testimonial from '../../components/Testimonial.svelte';
 import MainCTA from '../../components/MainCTA.svelte';
-import TrustIndicators from '../../components/TrustIndicators.svelte';
+import FAQ from '../../components/FAQ.svelte';
 import Footer from '../../components/Footer.svelte';
 import { getLangFromUrl, getTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = getTranslations(lang);
 
-const testimonials = [
-  {
-    id: '1',
-    avatar: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/8b/8ba5a58e631e40f1eeac75dfc1caf7d40cb4f1eb_full.jpg',
-    name: 'Sophie',
-    age: 24,
-    location: 'Paris',
-    quote: 'This platform helped me explore my desires in a safe and comfortable environment. The professional approach made all the difference.',
-    rating: 5,
-    verified: true,
-    activeTime: 'Active Now'
-  },
-  {
-    id: '2',
-    avatar: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/37/378bd4bf97da5293ae671ed7a7cdf9eed4894f72_full.jpg',
-    name: 'Marcus',
-    age: 28,
-    location: 'Berlin',
-    quote: 'I gained so much confidence through my experiences here. The team is incredibly supportive and professional.',
-    rating: 4,
-    verified: true,
-    activeTime: '5m ago'
-  }
-];
+const snapchatUsername = "your_snapchat";
+const telegramUsername = "your_telegram";
 
+// Reduced to core marketing arguments
 const marketingArgs = [
   {
-    emoji: "✨",
-    title: t.marketing.desires.title,
-    description: t.marketing.desires.description,
-    buttonText: t.marketing.desires.button
+    emoji: "💖",
+    title: "Genuine Connections",
+    description: "Experience real connections in a judgment-free space",
+    buttonText: "Connect Now",
+    target: "_blank", // Add required target prop
   },
   {
     emoji: "🔒",
-    title: t.marketing.privacy.title,
-    description: t.marketing.privacy.description,
-    buttonText: t.marketing.privacy.button
+    title: "100% Private",
+    description: "Your privacy and discretion are guaranteed",
+    buttonText: "Our Promise",
+    target: "_blank",
   },
   {
-    emoji: "💝",
-    title: t.marketing.wellbeing.title,
-    description: t.marketing.wellbeing.description,
-    buttonText: t.marketing.wellbeing.button
+    emoji: "✨",
+    title: "Professional Care",
+    description: "Expert guidance throughout your journey",
+    buttonText: "Learn More",
+    target: "_blank",
+  }
+];
+
+// Single impactful testimonial
+const testimonial = {
+  id: '1',
+  avatar: 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/8b/8ba5a58e631e40f1eeac75dfc1caf7d40cb4f1eb_full.jpg',
+  name: 'Sophie',
+  age: 24,
+  location: 'Paris',
+  quote: 'This platform helped me explore my desires in a safe and comfortable environment. The professional approach made all the difference.',
+  rating: 5,
+  verified: true,
+  activeTime: 'Active Now'
+};
+
+const faqs = [
+  {
+    question: "How does it work?",
+    answer: "Connect with us on Snapchat for a casual chat about your interests. We'll guide you through the rest."
+  },
+  {
+    question: "Is my privacy protected?",
+    answer: "Absolutely. We ensure all interactions are completely confidential."
+  },
+  {
+    question: "How do I get started?",
+    answer: "Simply add us on Snapchat and send us a message. We'll take care of the rest!"
   }
 ];
 ---
 
 <Layout title={t.nav.logo}>
-  <!-- Hero Section -->
-  <section class="min-h-screen flex flex-col items-center justify-center relative px-4 py-20">
+  <!-- Optimized Hero Section -->
+  <section class="min-h-[80vh] md:min-h-screen flex items-center justify-center px-4 py-12 md:py-20">
     <div class="hero-content text-center max-w-3xl mx-auto">
-      <h1 class="text-4xl md:text-6xl font-bold text-pink-100 mb-6 animate-fade-in">
-        {t.hero.title}
+      <h1 class="text-3xl md:text-6xl font-bold text-pink-100 mb-4 md:mb-6 animate-fade-in">
+        Your Journey to Self-Discovery
       </h1>
-      <p class="text-xl md:text-2xl text-pink-200/90 leading-relaxed mb-8 animate-fade-in-delay">
-        {t.hero.subtitle}
+      <p class="text-lg md:text-2xl text-pink-200/90 leading-relaxed mb-6 md:mb-8 animate-fade-in-delay">
+        Experience genuine connections in a safe, welcoming space designed for you
       </p>
       <MainCTA
         client:visible
-        username="your_snapchat"
-        title="Start Your Journey Today"
-        subtitle="Join thousands already experiencing genuine connections"
+        snapchatUsername={snapchatUsername}
+        telegramUsername={telegramUsername}
+        title="Start Your Journey"
+        subtitle="Join thousands experiencing genuine connections"
       />
-    </div>
-
-    <div class="absolute bottom-8 animate-bounce">
-      <div class="flex flex-col items-center text-pink-300/60">
-        <span class="text-sm mb-2">Scroll to discover</span>
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- Social Proof -->
-  <section class="py-20">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-light text-pink-100 text-center mb-12">
-        Real Stories from Real People
-      </h2>
-      <Testimonial testimonials={testimonials} client:visible />
     </div>
   </section>
 
   <!-- Key Benefits -->
-  <section class="py-20 bg-pink-900/5">
+  <section class="py-12 md:py-20 bg-pink-900/5">
     <div class="container mx-auto px-4">
-      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
         {marketingArgs.map((arg) => (
           <div class="transform transition-all duration-300 hover:-translate-y-1">
             <ArgumentCard {...arg} client:visible />
@@ -108,68 +101,73 @@ const marketingArgs = [
     </div>
   </section>
 
-  <!-- Trust Indicators -->
-  <section class="py-20">
+  <!-- Social Proof -->
+  <section class="py-12 md:py-20">
     <div class="container mx-auto px-4">
-      <TrustIndicators client:visible />
+      <Testimonial testimonials={[testimonial]} client:visible />
     </div>
   </section>
 
+  <!-- Collapsible FAQ -->
+  <details class="container mx-auto px-4 py-8 md:py-12 max-w-3xl group">
+    <summary class="text-2xl md:text-3xl font-light text-pink-100 cursor-pointer text-center mb-6 list-none">
+      <div class="flex items-center justify-center gap-2">
+        Frequently Asked Questions
+        <svg
+          class="w-6 h-6 transform transition-transform duration-300 group-open:rotate-180"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+    </summary>
+    <FAQ {faqs} client:idle />
+  </details>
+
   <!-- Final CTA -->
-  <section class="py-20 bg-gradient-to-b from-pink-900/20 to-transparent">
+  <section class="py-12 md:py-20 bg-gradient-to-b from-pink-900/20 to-transparent">
     <div class="container mx-auto px-4">
       <MainCTA
-        client:visible
-        username="your_snapchat"
+        client:idle
+        snapchatUsername={snapchatUsername}
+        telegramUsername={telegramUsername}
         title="Ready to Connect?"
-        subtitle="Start your journey to genuine connections today"
+        subtitle="Start your journey today"
       />
     </div>
   </section>
 
-  <Footer snapchatUsername="your_snapchat" client:visible />
+  <Footer
+    {snapchatUsername}
+    {telegramUsername}
+    client:idle
+  />
 </Layout>
 
-<style>
-  section {
-    scroll-margin-top: 4rem;
-  }
+<script>
+  // Floating CTA and Back to Top functionality
+  const backToTop = document.getElementById('backToTop');
+  const floatingCTA = document.getElementById('floatingCTA');
+  let lastScroll = 0;
 
-  .hero-content {
-    @apply relative z-10;
-  }
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
 
-  /* Add a subtle gradient overlay to the hero */
-  section:first-of-type::before {
-    content: '';
-    @apply absolute inset-0;
-    @apply bg-gradient-to-b from-pink-950/30 to-transparent;
-    @apply pointer-events-none;
-  }
-
-  /* Smooth scrolling */
-  :global(html) {
-    scroll-behavior: smooth;
-  }
-
-  /* Animation classes */
-  .animate-fade-in {
-    animation: fadeIn 1s ease-out forwards;
-  }
-
-  .animate-fade-in-delay {
-    animation: fadeIn 1s ease-out 0.3s forwards;
-    opacity: 0;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
+    if (currentScroll > 500) {
+      backToTop?.classList.remove('opacity-0');
+      backToTop?.classList.add('opacity-100');
+    } else {
+      backToTop?.classList.remove('opacity-100');
+      backToTop?.classList.add('opacity-0');
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+
+    if (currentScroll > lastScroll) {
+      floatingCTA?.classList.add('translate-y-20');
+    } else {
+      floatingCTA?.classList.remove('translate-y-20');
     }
-  }
-</style>
+    lastScroll = currentScroll;
+  });
+</script>

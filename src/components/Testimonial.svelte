@@ -105,7 +105,7 @@
           class:active={i === currentIndex}
           on:click={() => currentIndex = i}
           aria-label={`Go to testimonial ${i + 1}`}
-        />
+        ></button>
       {/each}
     </div>
   </div>
