@@ -6,11 +6,10 @@ interface Props {
 
 // Extract title from props using Astro.props
 const { title } = Astro.props as Props;
-const currentLang = Astro.url.pathname.split('/')[1] || 'en';
 ---
 
 <!doctype html>
-<html lang={currentLang}>
+<html>
     <head>
         <meta charset="UTF-8" />
         <meta name="description" content="Astro description" />
@@ -23,20 +22,9 @@ const currentLang = Astro.url.pathname.split('/')[1] || 'en';
         <title>{title}</title>
     </head>
     <body>
-        <!-- Top bar with language selector -->
-        <header class="fixed top-0 left-0 right-0 bg-black/50 backdrop-blur-md z-50 border-b border-white/10">
-          <div class="container mx-auto px-4">
-            <div class="flex items-center justify-between h-14">
-              <!-- Logo/Brand -->
-              <div class="text-pink-100/90 font-light tracking-wide">
-                {title}
-              </div>
-            </div>
-          </div>
-        </header>
 
         <!-- Main content -->
-        <main class="pt-14 pb-16 min-h-screen bg-gradient-to-b from-[#1a0f1d] to-[#2d1b2e]">
+        <main class="pb-16 min-h-screen bg-gradient-to-b from-[#1a0f1d] to-[#2d1b2e]">
             <slot />
         </main>
 
