@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { slide } from 'svelte/transition';
   interface FAQItem {
     question: string;
     answer: string;
