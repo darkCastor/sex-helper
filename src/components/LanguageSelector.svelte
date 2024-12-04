@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { languages } from '../i18n/utils';
   export let currentLang: string = 'en';
 
   let isOpen = false;

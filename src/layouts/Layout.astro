@@ -3,7 +3,6 @@
 interface Props {
     title: string;
 }
-import LanguageSelector from '../components/LanguageSelector.svelte';
 
 // Extract title from props using Astro.props
 const { title } = Astro.props as Props;
@@ -31,11 +30,6 @@ const currentLang = Astro.url.pathname.split('/')[1] || 'en';
               <!-- Logo/Brand -->
               <div class="text-pink-100/90 font-light tracking-wide">
                 {title}
-              </div>
-
-              <!-- Right section with Language -->
-              <div class="flex items-center gap-4">
-                <LanguageSelector currentLang={currentLang} client:idle />
               </div>
             </div>
           </div>

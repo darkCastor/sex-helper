@@ -5,13 +5,6 @@ import tailwind from "@astrojs/tailwind";
 import svelte from "@astrojs/svelte";
 
 export default defineConfig({
-  i18n: {
-    defaultLocale: "en",
-    locales: ["en", "fr", "cs"],
-    routing: {
-      prefixDefaultLocale: true, // Shows /en/ prefix for default language
-    },
-  },
   integrations: [
     AstroPWA({
       registerType: "autoUpdate",

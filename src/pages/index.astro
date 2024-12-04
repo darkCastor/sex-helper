@@ -6,10 +6,6 @@ import MainCTA from '../components/MainCTA.svelte';
 import FAQ from '../components/FAQ.svelte';
 import Footer from '../components/Footer.svelte';
 import About from '../components/About.svelte';
-import { getLangFromUrl, getTranslations } from '../i18n/utils';
-
-const lang = getLangFromUrl(Astro.url);
-const t = getTranslations(lang);
 
 const snapchatUsername = "your_snapchat";
 const telegramUsername = "your_telegram";
@@ -99,7 +95,7 @@ const faqs = [
 
 ---
 
-<Layout title={t.nav.logo}>
+<Layout title='logo'>
   <!-- Hero Section -->
   <section class="min-h-screen flex flex-col items-center justify-center relative px-4 py-20">
     <div class="hero-content text-center max-w-3xl mx-auto">
@@ -144,11 +140,18 @@ const faqs = [
   <section class="py-20 bg-pink-900/5">
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {marketingArgs.map((arg) => (
-          <div class="transform transition-all duration-300 hover:-translate-y-1">
-            <ArgumentCard {...arg} client:visible />
-          </div>
-        ))}
+      {marketingArgs.map((arg) => (
+        <div class="transform transition-all duration-300 hover:-translate-y-1">
+          <ArgumentCard
+            emoji={arg.emoji}
+            title={arg.title}
+            description={arg.description}
+            buttonText={arg.buttonText}
+            target="_blank"
+            client:visible
+          />
+        </div>
+      ))}
       </div>
     </div>
   </section>
@@ -159,7 +162,7 @@ const faqs = [
       <h2 class="text-3xl md:text-4xl font-light text-pink-100 text-center mb-12">
         Frequently Asked Questions
       </h2>
-      <FAQ faqs={faqs} client:idle />
+      <FAQ {faqs} client:idle />
     </div>
   </section>
 
