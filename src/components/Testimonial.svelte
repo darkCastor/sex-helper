@@ -11,8 +11,6 @@
     location: string;
     quote: string;
     rating: number;
-    verified?: boolean;
-    activeTime?: string;
   }
 
   export let testimonials: Testimonial[] = [];
@@ -24,20 +22,39 @@
   function nextTestimonial() {
     direction = 'right';
     currentIndex = (currentIndex + 1) % testimonials.length;
+    resetInterval();
   }
 
   function prevTestimonial() {
     direction = 'left';
     currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+    resetInterval();
+  }
+
+  function resetInterval() {
+    clearInterval(interval);
+    interval = setInterval(nextTestimonial, 5000);
+  }
+
+  function handleKeydown(event: KeyboardEvent) {
+    if (event.key === 'ArrowLeft') {
+      prevTestimonial();
+    } else if (event.key === 'ArrowRight') {
+      nextTestimonial();
+    }
   }
 
   onMount(() => {
     interval = setInterval(nextTestimonial, 5000);
-    return () => clearInterval(interval);
+    window.addEventListener('keydown', handleKeydown);
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('keydown', handleKeydown);
+    };
   });
 </script>
 
-<div class="testimonial-container">
+<div class="testimonial-container" role="region" aria-label="Testimonials">
   <div class="testimonial-content">
     {#each [testimonials[currentIndex]] as testimonial (currentIndex)}
       <div
@@ -54,19 +71,6 @@
                 class="avatar"
                 loading="eager"
               />
-              {#if testimonial.verified}
-                <div class="verified-badge" title="Verified Member">
-                  <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                  </svg>
-                </div>
-              {/if}
-              {#if testimonial.activeTime}
-                <div class="active-time">
-                  <span class="dot"></span>
-                  {testimonial.activeTime}
-                </div>
-              {/if}
             </div>
             <div class="user-info">
               <span class="name">{testimonial.name}</span>
@@ -76,7 +80,7 @@
 
           <div class="content-section">
             <p class="quote">"{testimonial.quote}"</p>
-            <div class="rating" style="--rating: {testimonial.rating};">
+            <div class="rating">
               {#each Array(5) as _, i}
                 <span class="star" class:filled={i < testimonial.rating}>★</span>
               {/each}
@@ -103,11 +107,24 @@
         <button
           class="indicator"
           class:active={i === currentIndex}
-          on:click={() => currentIndex = i}
+          on:click={() => {
+            currentIndex = i;
+            resetInterval();
+          }}
           aria-label={`Go to testimonial ${i + 1}`}
         ></button>
       {/each}
     </div>
+
+    <button
+      class="control-btn"
+      on:click={nextTestimonial}
+      aria-label="Next testimonial"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
+    </button>
   </div>
 </div>
 
@@ -149,29 +166,6 @@
     @apply object-cover;
     @apply border-4 border-pink-300/20;
     @apply transition-transform duration-300;
-  }
-
-  .verified-badge {
-    @apply absolute -bottom-1 -right-1;
-    @apply bg-green-500;
-    @apply text-white;
-    @apply rounded-full;
-    @apply p-1;
-  }
-
-  .active-time {
-    @apply absolute -bottom-2 left-1/2 -translate-x-1/2;
-    @apply bg-black/80 text-white;
-    @apply text-xs;
-    @apply px-3 py-1;
-    @apply rounded-full;
-    @apply flex items-center gap-2;
-    @apply whitespace-nowrap;
-  }
-
-  .dot {
-    @apply w-2 h-2 rounded-full bg-green-500;
-    @apply animate-pulse;
   }
 
   .content-section {
@@ -223,6 +217,12 @@
     @apply text-pink-300/80 hover:text-pink-300;
     @apply transition-all duration-200;
     @apply hover:scale-110;
+    @apply rounded-full;
+    @apply hover:bg-pink-900/20;
+  }
+
+  .control-btn:focus-visible {
+    @apply outline-none ring-2 ring-pink-400;
   }
 
   .indicators {
@@ -251,6 +251,44 @@
     100% {
       opacity: 1;
       transform: scale(1);
+    }
+  }
+
+  /* Add touch support for mobile devices */
+  @media (hover: none) {
+    .control-btn {
+      @apply p-4;
+    }
+  }
+
+  /* Improve mobile layout */
+  @media (max-width: 768px) {
+    .testimonial-inner {
+      @apply text-center;
+    }
+
+    .content-section {
+      @apply items-center;
+    }
+
+    .rating {
+      @apply justify-center;
+    }
+  }
+
+  /* Optional: Add swipe animation */
+  .testimonial {
+    animation: slideIn 0.3s ease-out;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 </style>
