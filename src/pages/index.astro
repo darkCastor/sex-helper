@@ -6,6 +6,7 @@ import MainCTA from '../components/MainCTA.svelte';
 import FAQ from '../components/FAQ.svelte';
 import Footer from '../components/Footer.svelte';
 import About from '../components/About.svelte';
+import LocationInfo from '../components/LocationInfo.svelte'
 
 const snapchatUsername = "your_snapchat";
 const telegramUsername = "your_telegram";
@@ -167,6 +168,25 @@ const faqs = [
         Frequently Asked Questions
       </h2>
       <FAQ {faqs} client:idle />
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-light text-white text-center mb-8">
+        Limited Time Availability
+      </h2>
+
+      <LocationInfo
+        client:visible
+        currentLocation="Paris, France"
+        nextLocation="London, UK"
+        departureTime={new Date(Date.now() + 1000 * 60 * 60 * 12)} // 12 hours from now
+      />
+
+      <p class="text-center text-pink-200/60 mt-6 text-sm">
+        * Schedule subject to change. Book now to secure your spot.
+      </p>
     </div>
   </section>
 
