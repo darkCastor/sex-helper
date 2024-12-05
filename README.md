@@ -10,7 +10,7 @@ goals :
 
 
 target :
- - women 18 -35 years old, but will doo all public to avoid differentss problems like reputation
+ - women 18 -35 years old
 
 stack :
  - astrojs
@@ -24,7 +24,7 @@ features :
  - notifications on phone
  - location on our team
  - contact form
- - web first, mobile second
+ - mobile first, web second
  - add snapchat link
  - snapchat account
  - telegram account
