@@ -1,28 +1,28 @@
 <script lang="ts">
   const process = [
     {
-      emoji: "👋",
-      title: "Say Hi",
-      description: "Start with a casual chat on Snapchat - no pressure, just friendly vibes",
-      tips: ["Be yourself", "Ask anything", "No rush"]
+      emoji: "☕️",
+      title: "Connect",
+      description: "Start with a casual chat on Snapchat to ensure mutual comfort",
+      tips: ["No pressure", "Your pace", "Just talk"]
     },
     {
-      emoji: "☕️",
-      title: "Get Comfy",
-      description: "We'll take time to know each other through fun and engaging conversation",
-      tips: ["Share interests", "Express desires", "Build trust"]
+      emoji: "💝",
+      title: "Explore",
+      description: "Discuss your interests and desires in a safe space",
+      tips: ["Be yourself", "Share freely", "Stay comfortable"]
     },
     {
       emoji: "✨",
-      title: "Connect",
-      description: "If we click, we'll plan something special that matches your comfort level",
-      tips: ["Your pace", "Your boundaries", "Your experience"]
+      title: "Experience",
+      description: "Create meaningful connections and explore intimacy",
+      tips: ["Your boundaries", "Your choices", "Your journey"]
     },
     {
-      emoji: "💫",
-      title: "Experience",
-      description: "Enjoy a natural, flowing experience focused entirely on your wellbeing",
-      tips: ["Feel free", "Be present", "Just enjoy"]
+      emoji: "🦋",
+      title: "Grow",
+      description: "Discover yourself and build confidence",
+      tips: ["Feel empowered", "Stay authentic", "Embrace joy"]
     }
   ];
 </script>
