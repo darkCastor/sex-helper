@@ -7,6 +7,7 @@ import FAQ from '../components/FAQ.svelte';
 import Footer from '../components/Footer.svelte';
 import About from '../components/About.svelte';
 import LocationInfo from '../components/LocationInfo.svelte'
+import Presentation from '../components/Presentation.svelte'
 
 const snapchatUsername = "your_snapchat";
 const telegramUsername = "your_telegram";
@@ -130,6 +131,7 @@ const faqs = [
   </section>
 
   <About client:visible />
+  <Presentation client:idle />
 
   <!-- Social Proof -->
   <section class="py-20">

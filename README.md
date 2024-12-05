@@ -49,3 +49,4 @@ features :
  - retrouver les plaisirs simple de la vie
  - tendresse et connection
  - everybody is unique
+ - the pleasure of sex without the boredom of relationship (more pleasure, less headhache)
