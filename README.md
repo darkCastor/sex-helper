@@ -1,3 +1,5 @@
+My name is Thomas
+
 goals :
  - tackle increasing loneliness
  - reconnect people
@@ -50,3 +52,8 @@ features :
  - tendresse et connection
  - everybody is unique
  - the pleasure of sex without the boredom of relationship (more pleasure, less headhache)
+
+ process of encounter :
+ - message me on snap or telegram ( video to check identity )
+ - meet in reality around a coffee or beer and make use of the 36 question of love to create connection
+ - meet in safe space ( in her home or mine or hotel)
